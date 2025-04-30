@@ -6,7 +6,7 @@
 
 #Setup for a command -
 #Name
-NameofScript:
+CustomNameofCommand:
   #Types found here: https://meta.denizenscript.com/ - they can be searched for with -> 'script container system' on the search bar
   type: (type)
   description: (Example of a decription)
@@ -23,19 +23,29 @@ NameofScript:
     # ^Denizen Command:
     # Using a denizen command does not require a 'execute' command prior to it. Denizen commands here -> https://meta.denizenscript.com/Docs/
 
-#Intro 2 - Convert your command into a task and command
-moneyRun:
+# Intro 2 - Convert your command into a task and command
+
+# Hint - Use just 1 denizen command to execute a task
+
+CustomNameofTask:
     #Why is this yellow? Hover over to find out.
     type: task
     #Debug? Denizen by default allows you to see feedback in console! Set this to false to keep the boss happy once you no longer need it.
     debug: true
     script:
     #- (Here are your commands from before!)
+
 #Intro 3 - Convert your script to send hello to all online players - Try your task without the command with the ex command!
+CustomNameofTask:
+    type: task
+    debug: true
+    script:
+    #- Make this a foreach command and do a foreach player - Tip: search for narrate command to get the tag for all the online) + add the commands you had before!
 
-#Intro 4 - Create a condition with tags so the players do not recieve the welcome again!
+#Intro 4 - Make a world type task that listens to when the player joins! Use your existing taks but edit it to create a condition with tags so the players do not recieve the welcome again!
 
-#Intro 5 - Add another condition to check for player currency
+
+#Intro 5 - Add a secondary condition to check for player currency
 
 
 

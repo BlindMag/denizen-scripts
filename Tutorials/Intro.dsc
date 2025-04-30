@@ -7,7 +7,7 @@
 #Setup for a command -
 #Name
 NameofScript:
-#Types found here: https://meta.denizenscript.com/ - they can be searched for with -> 'script container system' on the search bar
+  #Types found here: https://meta.denizenscript.com/ - they can be searched for with -> 'script container system' on the search bar
   type: (type)
   description: (Example of a decription)
   name: (Name Used For Command Base)
@@ -24,7 +24,13 @@ NameofScript:
     # Using a denizen command does not require a 'execute' command prior to it. Denizen commands here -> https://meta.denizenscript.com/Docs/
 
 #Intro 2 - Convert your command into a task and command
-
+moneyRun:
+    #Why is this yellow? Hover over to find out.
+    type: task
+    #Debug? Denizen by default allows you to see feedback in console! Set this to false to keep the boss happy once you no longer need it.
+    debug: true
+    script:
+    #- (Here are your commands from before!)
 #Intro 3 - Convert your script to send hello to all online players - Try your task without the command with the ex command!
 
 #Intro 4 - Create a condition with tags so the players do not recieve the welcome again!

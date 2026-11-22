@@ -1,0 +1,131 @@
+LibrarianNPC:
+  type: assignment
+  interact scripts:
+  - 30 librarian
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+
+
+
+
+librarian:
+  type: interact
+  steps:
+    1:
+      proximity trigger:
+        entry:
+          script:
+            - if !<player.has_flag[librarianinstructions]>:
+              - if <player.chat_prefix> == &4❢&eN00b&4❢&7:
+                - narrate "<gold><npc.name><gray>: Welcome to the land <player.name>."
+                - wait 4s
+                - narrate "<gold><npc.name><gray>: To go on your journey, you must read the Book of Law and accept it 3 times in my presence."
+                - wait 4s
+                - narrate "<gold><npc.name><gray>: You see... I act as a gatekeeper of sorts. I ensure the law of the land is upheld."
+                - equip <npc> hand:written_book
+                - wait 3s
+                - narrate "<gold><npc.name><gray>: Here's your book, please take the time and read it. The vow you are looking for resides in these pages."
+                - wait 4s
+                - execute as_server 'cmi kit bookoflaw <player.name>'
+                - equip <npc> hand:air
+                - wait 4s
+                - narrate "<gold><npc.name><gray>: Now, if you would be so kind..."
+                - wait 4s
+                - narrate "<gray><italic><npc.name> waits for you patently..."
+                - flag <player> librarianinstructions
+                - stop
+              - narrate "<gold><npc.name><gray>: Good day <player.name>."
+              - wait 3s
+              - narrate "<gold><npc.name><gray>: I am here to ensure our new players listen to the land's guidelines."
+              - wait 3s
+              - narrate "<gold><npc.name><gray>: I see you've been playing here for some time. You may still make your vow to the land, the land will in turn reward you for your loyalty."
+              - wait 3s
+              - equip <npc> hand:written_book
+              - wait 3s
+              - narrate "<gold><npc.name><gray>: Here is the book of law, read it and make your vow if you are so inclined."
+              - wait 1s
+              - kit bookoflaw <player.name>
+              - equip <npc> hand:air
+      Click Trigger:
+        script:
+          - if !<player.has_flag[librarianinstructions]>:
+            - if <player.chat_prefix> == &4❢&eN00b&4❢&7:
+              - narrate "<gold><npc.name><gray>: Welcome to the land <player.name>."
+              - wait 4s
+              - narrate "<gold><npc.name><gray>: To go on your journey, you must read the Book of Law and accept it 3 times in my presence."
+              - wait 4s
+              - narrate "<gold><npc.name><gray>: You see... I act as a gatekeeper of sorts. I ensure the law of the land is upheld."
+              - equip <npc> hand:written_book
+              - wait 3s
+              - narrate "<gold><npc.name><gray>: Here's your book, please take the time and read it. The vow you are looking for resides in these pages."
+              - wait 4s
+              - execute as_server 'cmi kit bookoflaw <player.name>'
+              - equip <npc> hand:air
+              - wait 4s
+              - narrate "<gold><npc.name><gray>: Now, if you would be so kind..."
+              - wait 4s
+              - narrate "<gray><italic><npc.name> waits for you patently..."
+              - flag <player> librarianinstructions
+              - stop
+            - narrate "<gold><npc.name><gray>: Good day <player.name>."
+            - wait 3s
+            - narrate "<gold><npc.name><gray>: I am here to ensure our new players listen to The Land's guidelines."
+            - wait 3s
+            - narrate "<gold><npc.name><gray>: I see you've been playing here for some time. You may still make your vow to the land, the land will in turn reward you for your loyalty."
+            - wait 3s
+            - equip <npc> hand:written_book
+            - wait 3s
+            - narrate "<gold><npc.name><gray>: Here is the book of law, read it and make your vow if you are so inclined."
+            - wait 1s
+            - kit bookoflaw <player.name>
+            - equip <npc> hand:air
+          - random:
+            - "<gold><npc.name><gray>: <white>You must read the Book of Law all the way through and accept it in my presense."
+            - "<gray><italic><npc.name> waits for your vow."
+            - "<gold><npc.name><gray>: <white>If you will not make your vow, you cannot gain ranking in The Land."
+            - "<gray><italic><npc.name> sighs and waits for you to make your vow."
+            - "<gold><npc.name><gray>: <white>If you've lost your book, use /kit bookoflaw."
+      Chat Trigger:
+        Start Journey:
+          Trigger: /REGEX:^(?=.*?\bvow\b)(?=.*?\bto\b)(?=.*?\buphold\b)(?=.*?\bthe\b)(?=.*?\blaws\b)(?=.*?\bof\b)(?=.*?\bthe\b)(?=.*?\bland\b).*$/
+          script:
+          - wait 2s
+          - narrate "You -> librarian: <aqua>I vow to uphold the laws of the land<yellow>."
+          - wait 2s
+          - narrate "You -> librarian: <dark_aqua>I vow to uphold <bold>The Laws of The Land<gold>!"
+          - wait 3s
+          - execute as_server "cmi titlemsg <player.name> Thrice Heard...\n&3&oAnd Witnessed -in:45"
+          - wait 5s
+          - execute as_server "cmi titlemsg <player.name> &bIn The Land\nYour words have meaning. -in:40"
+          - wait 8s
+          - narrate "<gray>[<dark_aqua><bold>!<gray>]<aqua> Failure to follow the Laws will cause a decrease in your reputation and other unknown consequences."
+          - wait 4s
+          - narrate "<gray>[<dark_aqua><bold>!<gray>]<aqua> Keep in mind, your word means everything."
+          - if <player.chat_prefix> != &4❢&eN00b&4❢&7:
+            - execute as_server "kit gearskit <player.name>"
+            - narrate "<gray>[<dark_aqua><bold>!<gray>]<aqua> The Land has rewarded you for your loyalty."
+            - wait 3s
+            - narrate "<gold><npc.name><gray>: <white>Congratulations, may your journey be exciting."
+            - zap step:2
+            - stop
+          - execute as_server "lp user <player.name> parent set novice"
+          - narrate "<gray><npc.name><gray>: Congratulations <player.name>, you may now levelup in the land."
+          - wait 3s
+          - narrate "<gray><npc.name><gray>: Feel free to go claim your land with a golden shovel, reap rewards and build to your hearts content."
+          - zap step:2
+        What did you say: 
+          trigger: /REGEX:\w+/ 
+          script: 
+          - narrate "<gold><npc.name><gray>: <white>Those are not the words I am looking for." 
+          - wait 2s
+          - ^narrate "<red>Read The Book of Law to see the vow you must make.<&co>" 
+    2:
+      Click Trigger:
+        script:
+          - narrate "<gold><npc.name> <white>Good day <player.name>."
+          - zap step:1

@@ -1,0 +1,17 @@
+restestcmdhandler: 
+  type: world
+  debug: true
+  events: 
+    on res command:
+      - if <context.args.get[1]> == create: 
+        - wait 3s
+        - if <player.has_main_residence> && !<player.has_permission[firstresidence.node]>:
+          - execute as_server "lp user <player.name> parent add r1"
+          - execute as_op "rankhandler R1 <player.name>"
+          - execute as_server "cmi rankset <player.name> r1"
+      - if <context.args.get[1]> == auto: 
+        - wait 3s
+        - if <player.has_main_residence> && !<player.has_permission[firstresidence.node]>:
+          - execute as_server "lp user <player.name> parent add r1"
+          - execute as_op "rankhandler R1 <player.name>"
+          - execute as_server "cmi rankset <player.name> r1"

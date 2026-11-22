@@ -51,10 +51,17 @@ Brawl:
         - define 2ndPlace null
         - define 3rdPlace null
         - foreach <server.players_flagged[brawlEggCounter]>:
+            # A new high score pushes everyone below it down one place
             - if <[value].flag[brawlEggCounter]> > <[FirstPoints]>:
+                - define 3rdPlace <[2ndPlace]>
+                - define ThirdPoints <[SecondPoints]>
+                - define 2ndPlace <[1stPlace]>
+                - define SecondPoints <[FirstPoints]>
                 - define 1stPlace <[value].name>
                 - define FirstPoints <[value].flag[brawlEggCounter]>
             - else if <[value].flag[brawlEggCounter]> > <[SecondPoints]>:
+                - define 3rdPlace <[2ndPlace]>
+                - define ThirdPoints <[SecondPoints]>
                 - define 2ndPlace <[value].name>
                 - define SecondPoints <[value].flag[brawlEggCounter]>
             - else if <[value].flag[brawlEggCounter]> > <[ThirdPoints]>:
@@ -71,13 +78,13 @@ Brawl:
         - define checkAll 1
         - while <[checkAll]> < 6:
           - if <server.has_flag[r<[checkAll]>1stPlace]>:
-            - define FirstPoints <server.has_flag[r<[checkAll]>FirstPoints]>
-            - define SecondPoints <server.has_flag[r<[checkAll]>SecondPoints]>
-            - define ThirdPoints <server.has_flag[r<[checkAll]>ThirdPoints]>
-            - define 1stPlace <server.has_flag[r<[checkAll]>1stPlace]>
-            - define 2ndPlace <server.has_flag[r<[checkAll]>2ndPlace]>
-            - define 3rdPlace <server.has_flag[r<[checkAll]>3rdPlace]>
-            - narrate "<aqua>[<dark_aqua>3!<aqua>]<&r> Winners of round <dark_aqua><server.flag[brawlRound]> <&r>are: <&nl>1st Place: <[1stPlace]> at <[FirstPoints]><&nl>2nd Place: <[2ndPlace]> at <[SecondPoints]><&nl>3rd Place: <[3rdPlace]> at <[ThirdPoints]>"
+            - define FirstPoints <server.flag[r<[checkAll]>1stPScore]>
+            - define SecondPoints <server.flag[r<[checkAll]>2ndPScore]>
+            - define ThirdPoints <server.flag[r<[checkAll]>3rdPScore]>
+            - define 1stPlace <server.flag[r<[checkAll]>1stPlace]>
+            - define 2ndPlace <server.flag[r<[checkAll]>2ndPlace]>
+            - define 3rdPlace <server.flag[r<[checkAll]>3rdPlace]>
+            - narrate "<aqua>[<dark_aqua>3!<aqua>]<&r> Winners of round <dark_aqua><[checkAll]> <&r>are: <&nl>1st Place: <[1stPlace]> at <[FirstPoints]><&nl>2nd Place: <[2ndPlace]> at <[SecondPoints]><&nl>3rd Place: <[3rdPlace]> at <[ThirdPoints]>"
             - define checkAll:++
           - else:
             - define checkAll:7

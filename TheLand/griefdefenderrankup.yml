@@ -1,0 +1,28 @@
+landrankchecker: 
+  type: command 
+  name: landrank
+  usage: /landrank
+  description: Checks to see if you are on the right path
+  debug: true 
+  script: 
+    - if !<player.has_permission[landrank.check]>:
+      - if <placeholder[griefdefender_claims_basic]> >= 1:
+        - execute as_server "lp user <player.name> parent add r1"
+        - execute as_op "rankhandler R1 <player.name>"
+landrankhandler: 
+  type: world
+  debug: false
+  events: 
+    on flag command:
+      - if !<player.has_permission[landrank.check]>:
+        - if <placeholder[griefdefender_claims_basic]> >= 1:
+          - execute as_server "lp user <player.name> parent add r1"
+          - execute as_op "rankhandler R1 <player.name>"
+    on player holds item item:golden_shovel:
+      - if <player.has_flag[residencenotification]>:
+        - stop
+      - if !<player.has_permission[landrank.check]>:
+        - if <placeholder[griefdefender_claims_basic]> >= 1:
+          - execute as_server "lp user <player.name> parent add r1"
+          - execute as_op "rankhandler R1 <player.name>"
+      - flag player residencenotification duration:20m

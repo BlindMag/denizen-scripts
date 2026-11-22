@@ -1,0 +1,10 @@
+Warn4restart: 
+  type: command 
+  name: Warn4restart 
+  usage: /Warn4restart
+  permission: warn4restart.cmd  
+  description: Warns players that there is a restart coming.
+  debug: true 
+  script:
+    - title "title:<red>Server Restarting" "subtitle:<red>In 5 minute!" stay:15s targets:<server.online_players>
+    - execute as_server "broadcast There will be a server restart in 5 minutes."

@@ -1,0 +1,264 @@
+Rankhandlercmd:
+    type: command 
+    debug: false 
+    name: rankhandler
+    permission: rankhandler.cmd  
+    description: Handles rank messages
+    script:
+      - choose <context.args.get[1]>:
+        - case Initiate:
+          - announce "<dark_gray>[<gold><bold>!<dark_gray>] <green><bold><server.match_player[<context.args.get[2]>].name> <dark_aqua>has leveled up and is now <green><bold>Initiate<gold>!"
+          - wait 2s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <dark_red>You have reached <gold><underline>level 3<dark_red>! <yellow>Through hard work you have moved further along your path, you have Unlocked the following achievements." target:<server.match_player[<context.args.get[2]>]>
+          - wait 5s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have recieved an additional Homeset." target:<server.match_player[<context.args.get[2]>]>
+          - wait 5s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You gained the following abilities:" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <light_purple>Eggs of Catching" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/back" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/afk" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/tpahere" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to sit on stairs." target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the access to  <dark_aqua>/kit initiate" target:<server.match_player[<context.args.get[2]>]>
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>Crush your <dark_red>enemies<yellow>, honor your allies<yellow>, <dark_red><underline>LIVE<yellow>!" target:<server.match_player[<context.args.get[2]>]>
+        - case Apprentice:
+          - announce "<dark_gray>[<gold><bold>!<dark_gray>] <green><bold><server.match_player[<context.args.get[2]>].name> <dark_aqua>has leveled up and is now <green><bold>Apprentice<gold>!"
+          - wait 2s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <dark_red>You have reached <gold><underline>level 4<dark_red>! <yellow>Through hard work you have moved further along your path, you have Unlocked the following achievements." target:<server.match_player[<context.args.get[2]>]>
+          - wait 5s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have recieved an additional Homeset." target:<server.match_player[<context.args.get[2]>]>
+          - wait 5s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You gained the following abilities:" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/back <gold>on death" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/entity info" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/near" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/point" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/donate" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the access to  <dark_aqua>/kit apprentice" target:<server.match_player[<context.args.get[2]>]>
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>Crush your <dark_red>enemies<yellow>, honor your allies<yellow>, <dark_red><underline>LIVE<yellow>!" target:<server.match_player[<context.args.get[2]>]>
+        - case Journeyman:
+          - announce "<dark_gray>[<gold><bold>!<dark_gray>] <green><bold><server.match_player[<context.args.get[2]>].name> <dark_aqua>has leveled up and is now <green><bold>Journeyman<gold>!"
+          - wait 2s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <dark_red>You have reached <gold><underline>level 5<dark_red>! <yellow>Through hard work you have moved further along your path, you have Unlocked the following achievements." target:<server.match_player[<context.args.get[2]>]>
+          - wait 5s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have recieved an additional Homeset." target:<server.match_player[<context.args.get[2]>]>
+          - wait 5s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You gained the following abilities:" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/rt" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/me" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/spit" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use colors in books and anvils." target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You will now be informed of low durability on your items." target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the access to  <dark_aqua>/kit journeyman" target:<server.match_player[<context.args.get[2]>]>
+          - wait 3s
+          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>Crush your <dark_red>enemies<yellow>, honor your allies<yellow>, <dark_red><underline>LIVE<yellow>!" target:<server.match_player[<context.args.get[2]>]>
+        - case R1:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>The time you have played in <blue>The Land <light_purple>has increased the powers you can use in your land." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Animal Killing." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Anvil Usage." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Anvil Break in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Bed Usage in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Building in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Destroying in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Placing in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Destroying Vehicles in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Leashing Entities in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Using Containers, Buttons, and Pressure Plates in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Lever Usage in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Cake Eating in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Interacting with Flower Pots in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Teleporting in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>Your reputation with new players has improved." target:<server.match_player[<context.args.get[2]>]>
+        - case R2:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Creeper Protection in your Lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Item Dropping in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Phantom Spawning in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Shear usage in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Snow Trails in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Villager Trading in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Trampling in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Hooking Entities in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You may now rename your residence." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>Your reputation with new players has improved." target:<server.match_player[<context.args.get[2]>]>
+        - case R3:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Coordinates to your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Dying in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Enchanting usage in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to Hide your land from the list of lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Ability to Sell in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You may now create, delete and expand subzones in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You may now grant players Admin in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You may now grant players the abillity to make subzones in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You may now rename your residence." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>Your reputation with new players has improved." target:<server.match_player[<context.args.get[2]>]>
+        - case R4:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Redstone in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Note Blocks in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Riding Entites usage in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to Throw Snowballs in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Pistons in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Piston Protection in your ands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Ender Pearls in your Lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>Your reputation with new players has improved." target:<server.match_player[<context.args.get[2]>]>
+        - case R5:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Beacon usage in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Explosions in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Jump level 2 in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Greetings|Farewell messages in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle TnT Explosions in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>You have gained the ability to toggle Auto Respawning in your ands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Ice Formation in your Lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Ice Melting in your Lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You have gained the ability to toggle Desposit/Withdrawing from Banks in your Lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <dark_purple>You may now alter your Greeting and Farewell messages in your lands." target:<server.match_player[<context.args.get[2]>]>
+          - wait 4s
+          - narrate "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple>Your reputation with new players has improved." target:<server.match_player[<context.args.get[2]>]>
+        - case R6:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+        - case R7:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+        - case R8:
+          - announce "<dark_gray>[<blue><bold>!<dark_gray>] <light_purple><bold><context.args.get[2]>'s <dark_purple><magic>+<blue>Powers in The Land<dark_purple><magic>+ <gray>have improved<light_purple>, <gray>they may now control different abilities in their land<light_purple>!"
+          - wait 5s
+#        - case Apprentice:
+#          - announce "<dark_gray>[<gold><bold>!<dark_gray>] <green><bold><server.match_player[<context.args.get[2]>].name> <dark_aqua>has leveled up and is now Apprentice<gold>!"
+#          - wait 2s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <dark_red>You have reached level 3! <yellow>Through hard work you have moved further along your path, you have Unlocked the following achievements." target:<server.match_player[<context.args.get[2]>]>
+#          - wait 5s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have recieved an additional Homeset." target:<server.match_player[<context.args.get[2]>]>
+#          - wait 5s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You gained the following abilities:" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/back on death" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/entity info" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/near" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/point" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/donate" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>Crush your <dark_red>enemies<yellow>, honor your allies<yellow>, <dark_red><underline>LIVE<yellow>!" target:<server.match_player[<context.args.get[2]>]>
+#        - case Apprentice:
+#          - announce "<dark_gray>[<gold><bold>!<dark_gray>] <green><bold><server.match_player[<context.args.get[2]>].name> <dark_aqua>has leveled up and is now Apprentice<gold>!"
+#          - wait 2s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <dark_red>You have reached level 3! <yellow>Through hard work you have moved further along your path, you have Unlocked the following achievements." target:<server.match_player[<context.args.get[2]>]>
+#          - wait 5s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have recieved an additional Homeset." target:<server.match_player[<context.args.get[2]>]>
+#          - wait 5s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You gained the following abilities:" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/back on death" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/entity info" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/near" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/point" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/donate" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>Crush your <dark_red>enemies<yellow>, honor your allies<yellow>, <dark_red><underline>LIVE<yellow>!" target:<server.match_player[<context.args.get[2]>]>
+#        - case Apprentice:
+#          - announce "<dark_gray>[<gold><bold>!<dark_gray>] <green><bold><server.match_player[<context.args.get[2]>].name> <dark_aqua>has leveled up and is now Apprentice<gold>!"
+#          - wait 2s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <dark_red>You have reached level 3! <yellow>Through hard work you have moved further along your path, you have Unlocked the following achievements." target:<server.match_player[<context.args.get[2]>]>
+#          - wait 5s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have recieved an additional Homeset." target:<server.match_player[<context.args.get[2]>]>
+#          - wait 5s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You gained the following abilities:" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/back on death" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/entity info" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <gold>You have gained the ability to use <dark_aqua>/near" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/point" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>You have gained the ability to use <dark_aqua>/donate" target:<server.match_player[<context.args.get[2]>]>
+#          - wait 3s
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] <yellow>Crush your <dark_red>enemies<yellow>, honor your allies<yellow>, <dark_red><underline>LIVE<yellow>!" target:<server.match_player[<context.args.get[2]>]>
+#        - case null:
+#          - narrate "<dark_gray>[<gold><bold>!<dark_gray>] This command is not for staff to use!"
+        

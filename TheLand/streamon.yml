@@ -1,0 +1,19 @@
+streamcmd: 
+  type: command 
+  name: stream
+  usage: /stream on/off
+  permission: staffstream.toggle
+  description: streaming on and off
+  debug: true 
+  script: 
+  - choose <c.args.get[1]>:
+    - case on:
+      - execute as_op "togglepm"
+      - execute as_op "spy"
+      - execute as_op "lp log notify false"
+      - execute as_server "lp user <player.name> parent add streaming"
+    - case off:
+      - execute as_server "lp user <player.name> parent remove streaming"
+      - execute as_op "togglepm"
+      - execute as_op "spy"
+      - execute as_op "lp log notify true"

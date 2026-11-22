@@ -1,0 +1,5 @@
+   
+selltask1:
+    type: task
+    script:
+    - execute as_op "sell"

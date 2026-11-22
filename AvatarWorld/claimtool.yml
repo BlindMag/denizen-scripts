@@ -1,0 +1,38 @@
+nationsclaimtool: 
+  type: item 
+  debug: false 
+  material: m@gold_spade 
+  display name: Nations Claim Tool
+  lore: 
+  - <&7><&o>Right<&7> click to claim a chunk 
+  script: 
+    - if <c.click_type.is[==].to[Right_CLICK_BLOCK]> { 
+      - execute as_player "kingdoms claim"
+      } 
+    - if <c.click_type.is[==].to[left_CLICK_BLOCK]> { 
+      - execute as_player "kingdoms unclaim"
+      } 
+nationclaimtool_Events: 
+  type: world 
+  debug: false 
+  events: 
+    on player clicks block: 
+      - if !<c.item.scriptname.starts_with[nationsclaimtool]||false> { 
+        - queue clear 
+        } 
+      - determine passively CANCELLED 
+      - inject <c.item.scriptname.as_script> instantly 
+claimtool: 
+  type: command 
+  name: leader
+  usage: /claimtool
+  description: claiming tool
+  debug: true 
+  script: 
+    - if !<player.has_flag[giveclaimtoolcd]> {
+      - give i@nationsclaimtool
+      - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You can use this tool to claim/unclaim chunks!"
+      - ^flag player giveclaimtoolcd duration:24h 
+      - queue clear
+      }
+    - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You may only receive 1 of these tools a day!" 

@@ -1,0 +1,67 @@
+setrank:
+    type: command
+    name: setrank
+    description: /setrank name rank
+    debug: true
+    aliases:
+    - setr
+    script:
+    - define player "<c.args.get[1]>"
+    - choose <c.args.get[2]>:
+        - case helper:
+            - if <player.has_permission[setrank.node]> run addhelpertask
+        - case mod:
+            - if <player.has_permission[setrank.node]> run addmodtask
+        - case admin:
+            - if <player.has_permission[setrank.node]> run addadmintask
+        - case owner:
+            - if <player.has_permission[setrank.node]> run addownertask
+        - case prof:
+            - if <player.has_permission[setrank.node]> run addproftask
+        - case null:
+            - narrate "Please format your command correctly. /setrank name rank"
+addhelpertask:
+    type: task
+    script:
+    - execute as_server "lp user %player% parent add helper"
+    - execute as_server "lp user %player% parent remove mod"
+    - execute as_server "lp user %player% parent remove admin"
+    - execute as_server "lp user %player% parent remove prof"
+    - execute as_server "lp user %player% parent remove owner"
+    - narrate "&6[&3!&6] Your rank is set to Helper!"
+addmodtask:
+    type: task
+    script:
+    - execute as_server "lp user %player% parent add mod"
+    - execute as_server "lp user %player% parent remove helper"
+    - execute as_server "lp user %player% parent remove admin"
+    - execute as_server "lp user %player% parent remove prof"
+    - execute as_server "lp user %player% parent remove owner"
+    - narrate "&6[&3!&6] Your rank is set to Mod!"
+addadmintask:
+    type: task
+    script:
+    - execute as_server "lp user %player% parent add admin"
+    - execute as_server "lp user %player% parent remove mod"
+    - execute as_server "lp user %player% parent remove helper"
+    - execute as_server "lp user %player% parent remove prof"
+    - execute as_server "lp user %player% parent remove owner"
+    - narrate "&6[&3!&6] Your rank is set to Admin!"
+addownertask:
+    type: task
+    script:
+    - execute as_server "lp user %player% parent add owner"
+    - execute as_server "lp user %player% parent remove mod"
+    - execute as_server "lp user %player% parent remove helper"
+    - execute as_server "lp user %player% parent remove prof"
+    - execute as_server "lp user %player% parent remove admin"
+    - narrate "&6[&3!&6] Your rank is set to Owner!"
+addproftask:
+    type: task
+    script:
+    - execute as_server "lp user %player% parent add prof"
+    - execute as_server "lp user %player% parent remove mod"
+    - execute as_server "lp user %player% parent remove helper"
+    - execute as_server "lp user %player% parent remove admin"
+    - execute as_server "lp user %player% parent remove owner"
+    - narrate "&6[&3!&6] Your rank is set to Prof!"

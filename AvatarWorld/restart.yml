@@ -1,0 +1,13 @@
+restartcommand:
+  type: command
+  debug: true
+  name: restartserver
+  usage: /restartserver
+  description: Tun this command to restart your server, sending all online users to the fallback server specified in this script.
+  script:
+  - narrate "Server is shutting down in 5 seconds"
+  - wait 5
+  - foreach <server.list_online_players>:
+    - execute as_op "server survival"
+  - wait 2
+  - execute as_server "restart"

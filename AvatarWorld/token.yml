@@ -1,0 +1,258 @@
+tokenhandlers:
+  type: world
+  debug: false
+  events:
+    on player clicks with flytoken:
+    - run flytokentask
+    on player clicks with cbtoken1:
+    - run cbtoken1task
+    on player clicks with cbtoken2:
+    - run cbtoken2task
+    on player clicks with mcmmolevel1:
+    - narrate "<gray>[<dark_aqua>Token<gray>] <white>You can use command /mcmmo skills (skillname) to redeem your token!"
+    on player clicks with cratestoken:
+    - run cratestokentask
+    on player clicks with 7500token:
+    - run 7500tokentask
+    on player clicks with 5000token:
+    - run 5000tokentask
+    on player clicks with joblevel2:
+    - narrate "<gray>[<dark_aqua>Token<gray>] <white>You can use command /token jobs (jobname) to redeem your job token for 5 levels!"
+    on player clicks with joblevel2:
+    - narrate "<gray>[<dark_aqua>Token<gray>] <white>You can use command /token jobs (jobname) to redeem your job token for 20 levels!"
+
+
+flytokentask:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "lp user <player.name> permission unsettemp cmi.command.fly"
+  - wait 1
+  - execute as_server "lp user <player.name> permission settemp cmi.command.fly true 3d"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You have recieved 3 days of fly permissions!"
+cbtoken1task:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "adjustbonusclaimblocks <player.name> 100"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You have recieved 100 claimblocks!"
+cbtoken2task:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "adjustbonusclaimblocks <player.name> 5000"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You have recieved 5000 claimblocks!"
+mcmmotokentask:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "addlevels <player.name> all 5"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You have recieved 5 Mcmmo Levels In All Skills"
+cratestokentask:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "crate key all common"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You gave all online players a common crate key!"
+7500tokentask:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "money give all 7500"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You gave all online players $7500!"
+5000tokentask:
+  type: task
+  debug: false
+  script:
+  - ^take <player.item_in_hand>
+  - inventory close d:<context.inventory>
+  - playsound <player> sound:CHEST_OPEN volume:0.8 pitch:0.5
+  - execute as_server "money give all 5000"
+  - narrate "<gray>[<dark_aqua>Token<gray>] <white>You gave all online players $5000!"
+
+
+
+flytoken:
+  type: item
+  debug: false
+  material: i@paper
+  enchantments:
+  - ARROW_DAMAGE:1
+  display name: "<aqua>Fly Token"
+  lore:
+  - Click me to redeem your reward!
+cbtoken1:
+  type: item
+  debug: false
+  material: i@paper
+  enchantments:
+  - ARROW_DAMAGE:1
+  display name: "<gold>Claimblocks Token"
+  lore:
+  - Click me to redeem your 100 Claimblocks!
+cbtoken2:
+  type: item
+  debug: false
+  material: i@paper
+  enchantments:
+  - ARROW_DAMAGE:1
+  display name: "<gold>Claimblocks Token"
+  lore:
+  - Click me to redeem your 5000 Claimblocks!
+joblevel1:
+  type: item
+  debug: false
+  material: i@paper
+  enchantments:
+  - ARROW_DAMAGE:1
+  display name: "<dark_green>Job Levels Token"
+  lore:
+  - To redeem your 5 Job Levels, 
+  - use the command /token jobs (jobname)!
+joblevel2:
+  type: item
+  debug: false
+  material: i@paper
+  enchantments:
+  - ARROW_DAMAGE:1
+  display name: "<dark_green>Job Levels Token"
+  lore:
+  - To redeem your 20 Job Levels, 
+  - use the command /token jobs (jobname)!
+mcmmolevel1:
+  type: item
+  debug: false
+  material: i@paper
+  enchantments:
+  - ARROW_DAMAGE
+  display name: "<dark_aqua>Mcmmo Levels"
+  lore:
+  - To redeem your 5 Mcmmo levels,
+  - use the command /token mcmmo (skillname)!
+cratestoken:
+  type: item
+  debug: false
+  material: i@tripwire_hook
+  enchantments:
+  - ARROW_DAMAGE
+  display name: "<aqua>Common Crate Keys Token"
+  lore:
+  - Click me to give everyone common crate keys!
+7500token:
+  type: item
+  debug: false
+  material: i@jungle_leaves
+  enchantments:
+  - ARROW_DAMAGE
+  display name: "<green>$7500 Token"
+  lore:
+  - Click me to give everyone $7500!
+5000token:
+  type: item
+  debug: false
+  material: i@jungle_leaves
+  enchantments:
+  - ARROW_DAMAGE
+  display name: "<green>$5000 Token"
+  lore:
+  - Click me to give everyone $5000!
+
+giveflytoken:
+  type: command
+  debug: false
+  name: giveflytoken
+  usage: /giveflytoken 
+  description: Run this command to give yourself the fly token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@flytoken[flags=hide_enchants]
+givecb1token:
+  type: command
+  debug: false
+  name: givecbtoken1
+  usage: /givecbtoken1
+  description: Run this command to give yourself the cb1 token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@cbtoken1[flags=hide_enchants]
+givecb2token:
+  type: command
+  debug: false
+  name: givecbtoken2
+  usage: /givecbtoken2
+  description: Run this command to give yourself the cb2 token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@cbtoken2[flags=hide_enchants]
+givejobs1token:
+  type: command
+  debug: false
+  name: givejobstoken1
+  usage: /givejobstoken1
+  description: Run this command to give yourself the jobslevel1 token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@joblevel1[flags=hide_enchants]
+givejobs2token:
+  type: command
+  debug: false
+  name: givejobstoken2
+  usage: /givejobstoken1
+  description: Run this command to give yourself the jobslevel2 token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@joblevel2[flags=hide_enchants]
+givemcmmolevel1token:
+  type: command
+  debug: false
+  name: givemcmmotoken1
+  usage: /givemcmmotoken1
+  description: Run this command to give yourself the jobslevel1 token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@mcmmolevel1[flags=hide_enchants]
+givecratestoken:
+  type: command
+  debug: false
+  name: givecratestoken
+  usage: /givecratestoken
+  description: Run this command to give yourself the crates token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@cratestoken[flags=hide_enchants]
+give7500token:
+  type: command
+  debug: false
+  name: give7500token
+  usage: /give7500token
+  description: Run this command to give yourself the 7500 crates token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@7500token[flags=hide_enchants]
+give5000token:
+  type: command
+  debug: false
+  name: give5000token
+  usage: /give5000token
+  description: Run this command to give yourself the 5000 crates token.
+  script:
+  - if !<player.is_op> queue clear
+  - give i@5000token[flags=hide_enchants]

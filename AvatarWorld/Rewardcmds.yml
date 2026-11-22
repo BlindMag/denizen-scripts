@@ -1,0 +1,217 @@
+safarinet:
+  type: task
+  debug: true
+  script:
+    - define egg <util.random.int[1].to[5]>
+    - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+    - execute as_server "safarinet give <player.name> reusable <def[egg]>"
+    - wait 1
+    - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved <green><def[egg]> <yellow>Eggs<gold>!"
+randomperklitetask:
+  type: task
+  debug: false
+  script:
+  - random: 
+    - repeat 1:
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 50 Resource Points for your nation!"
+      - execute as_server "kingdoms admin rpforplayer <player.name> 50"
+    - repeat 1:
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp artmap.artist true 1h"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 1 hour of Artist permissions /artmap!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.jump true 6h"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 6 hours of /jump permissions!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.keepinventory true 6h"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 6 hours of Keep Inventory!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.keepexp true 6h"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 6 hours of Keep Experience!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.feed true 6h "
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 6 hours of /Feed!"
+
+randomperktask:
+  type: task
+  debug: false
+  script:
+  - random: 
+    - repeat 1:
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 250 Resource Points for your nation!"
+      - execute as_server "kingdoms admin rpforplayer <player.name> 250"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.jump true 1d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 1 day of /jump permissions!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.keepinventory true 1d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 1 day of Keep Inventory!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.keepexp true 1d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 1 day of Keep Experience!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.feed true 1d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 1 day of /Feed!"
+randomperkmediumtask:
+  type: task
+  debug: false
+  script:
+  - random: 
+    - repeat 1: 
+    - repeat 1:
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 250 Resource Points for your nation!"
+      - execute as_server "kingdoms admin rpforplayer <player.name> 250"
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.jump true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of /jump permissions!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.keepinventory true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of Keep Inventory!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.keepexp true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of Keep Experience!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp cmi.command.cmi.feed true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of /Feed!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp jobs.boost.all.money.0.01 true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of %10 Jobs money boost!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp jobs.boost.all.money.0.025 true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of %25 Jobs money boost!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp jobs.boost.all.money.0.05 true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of %50 Jobs money boost!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp jobs.boost.all.exp.0.01 true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of %10 Jobs EXP boost!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp jobs.boost.all.exp.0.025 true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of %25 Jobs EXP boost!"
+    - repeat 1: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - wait 1
+      - execute as_server "lp user <player.name> permission settemp jobs.boost.all.exp.0.05 true 3d"
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved 3 days of %50 Jobs EXP boost!"
+randommoneytask:
+  type: task
+  debug: false
+  script:  
+  - random:
+    - repeat 1: 
+      - define moolah <util.random.int[25].to[2500]>
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - execute as_server "money give <player.name> <def[moolah]>"
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved <green>$<def[moolah]><gold>!"
+    - repeat 1: 
+      - wait 1
+    - repeat 1: 
+      - wait 1
+    - repeat 1: 
+      - wait 1
+    - repeat 1: 
+      - define moolah <util.random.int[25].to[500]>
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - execute as_server "money give <player.name> <def[moolah]>"
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved <green>$<def[moolah]><gold>!"
+    - repeat 1: 
+      - define moolah <util.random.int[25].to[250]>
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - execute as_server "money give <player.name> <def[moolah]>"
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved <green>$<def[moolah]><gold>!"
+randommoneysmalltask:
+  type: task
+  debug: false
+  script:  
+    - define moolah <util.random.int[25].to[250]>
+    - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+    - execute as_server "money give <player.name> <def[moolah]>"
+    - wait 1
+    - narrate "<gray>[<blue>Crate<gray>] <gold>You have recieved <green>$<def[moolah]><gold>!"
+
+ranksettask:
+  type: task
+  debug: false
+  script: 
+      - playsound <player.location> sound:CHEST_OPEN volume:0.8 pitch:0.5
+      - execute as_server "lp user <player.name> parent addtemp d3 13w"
+      - wait 1
+      - narrate "<gray>[<blue>Crate<gray>] <gold>You have redeemed 3 Months Of Donator Rank 3! Congrats!"
+
+randomizercmd:
+  type: command
+  debug: false
+  name: randomizer
+  usage: /randomizer (thing) (player) 
+  permission: cmd.randomperk
+  permission message: You can't use my command because you don't have the permission '<permission>'! 
+  description: Run this command to give yourself a random perk.
+  script:
+  - choose <c.args.get[1]||null>:
+    - case perk:
+      - define player "<c.args.get[2]>"
+      - run randomperktask instantly player:<server.match_player[<def[player]>]>
+    - case moneysmall:
+      - define player "<c.args.get[2]>"
+      - run randommoneysmalltask instantly player:<server.match_player[<def[player]>]>
+    - case money:
+      - define player "<c.args.get[2]>"
+      - run randommoneytask instantly player:<server.match_player[<def[player]>]>
+    - case rank3:
+      - define player "<c.args.get[2]>"
+      - run ranksettask instantly player:<server.match_player[<def[player]>]>
+    - case safarinet:
+      - define player "<c.args.get[2]>"
+      - run safarinet instantly player:<server.match_player[<def[player]>]>
+    - case randomperklitetask:
+      - define player "<c.args.get[2]>"
+      - run randomperklitetask instantly player:<server.match_player[<def[player]>]>
+    - case randomperktask:
+      - define player "<c.args.get[2]>"
+      - run randomperktask instantly player:<server.match_player[<def[player]>]>
+    - case randomperkmediumtask:
+      - define player "<c.args.get[2]>"
+      - run randomperkmediumtask instantly player:<server.match_player[<def[player]>]>

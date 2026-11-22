@@ -1,0 +1,413 @@
+Maci:
+  type: assignment
+  interact scripts:
+  - 30 Osirenpc
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+Macinpc:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - engeage 
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Hello, I'm Maci."
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>My mother is the head of the council...."
+          - wait 3
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Alot rides on my shoulders to take care of the men and women refugees who come here."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I mean it's mostly up to me and I'm just not sure if I can do it."
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Anyway, do excuse me, I must get back to cooking for the evening."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Then I have to coordinate the fishing team."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Do the dishes...."
+          - wait 3
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Wash the clothes....."
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Get the big comforters ready for the cold this evening....."
+          - disengage
+Osire:
+  type: assignment
+  interact scripts:
+  - 30 Osirenpc
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+
+Osirenpc:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I'm just here to observe the construction of these fine buildings."
+          - wait 3
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I happen to be a restoration master, I am old enough to bring the spirit of how things were a very long time ago."
+          - wait 5
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I have been enjoying the time here, it's quiet, aside from a few who haven't gotten comfortable here yet. I think they are restless."
+          - wait 5
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Don't get me wrong, there are some people that are not good for the community, however it takes all kinds to run a colony smoothly."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Oh my firebending? Yes it's a good element to work with, however I do wish I was an earth bender."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>My bending is more advanced, Don't go around announcing it, but if you come back to me once you reach top level I will show you some new tips and tricks, as well as guide you toward a subelement..."
+          - wait 6
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Oh don't look at me that way, elements have all sorts of secrets that you can unlock. You will need the appropriate teacher to guide you."
+          - wait 5
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>There are many teachers willing to take on a student of your potential, now, may your journey be full of wonder."
+          - disengage
+
+
+Philip:
+  type: assignment
+  interact scripts:
+  - 30 Philipnpc
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+Philipnpc:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+        - if <player.item_in_hand.contains[cooked_salmon:1]> {
+          - ^take cooked_fish:1
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>How.... Nevermind"
+          - wait 3
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Npc took the item in your hand, click again to talk to the npc after he has eaten."
+          - ^flag player philipfed 
+          - money give 500
+          - zap step 2
+          }
+        - wait 1
+        - random {
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I've got no business with you."
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>It's a cold day, get lost."
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>No body bothers to feed us, it's no wonder we're pissy."
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>What do you want? I'm hungry, leave me alone."
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>No food. No talky talky."
+          } 
+    2:
+      click trigger:
+        script:
+        - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I've been a bit hasty today, maybe some fresh air would do me good."
+        - wait 3
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> NPCs like this may have a quest later. Return after you've given this npc some time."
+
+
+
+Haylia:
+  type: assignment
+  interact scripts:
+  - 30 HayliaNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+
+
+HayliaNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I'm Haylia, what's your name?"
+          - wait 3
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Pretty place isn't it? gotta love the effort put in here."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>You're such an interesting character."
+          - wait 3
+          - walk l@traininggrounds
+          - disengage
+          - zap step:2
+    2:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I can't believe I actually made it here, my ancestors would be so proud to have an airbender in the family..."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Airbending is so much fun, I just love zipping around on a ball or making objects work for you."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Not to mention how cute the boys think you are when you actually float into a room!"
+          - wait 3
+          - narrate "<aqua><italic><NPC.Name> <gray><italic>blushes and giggles..."
+          - disengage
+          - zap step:3
+    3:
+      click trigger:
+        script:
+          - random {
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I do have to get going now, take care!"
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>We'll meet again I'm sure of it!"
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>You're one of my favorites. Come see me again sometime soon, I have to get going for now."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Tata for now cutie!"
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I got to get going, see you soon!"
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Oh, I do apoligize, but I am expected somewhere."
+            }
+          - walk l@temple
+Christin:
+  type: assignment
+  interact scripts:
+  - 30 ChristinNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+ChristinNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+        - if <player.item_in_hand.contains[blue_orchid]> {
+          - engage
+          - narrate "<aqua><italic><npc.name> <gray><italic>stairs down at the flower you offered her with sadness and shock..."
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I've been nothing but terrible to you..."
+          - wait 3
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Yet you stand before me with this, and with such sincerity..."
+          - money give 1500
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> You've <green>$1500 <gray><italic>for completing a quest."
+          - ^take blue_orchid
+          - disengage
+          - zap step:2
+          }
+          - random {
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Like hell you're talking to me, get lost freak."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Ew."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Not even close."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I'll slap you if you get closer to me."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Nope."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Get lost."
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>How wonderfully interesting you are. Not."
+            }
+    2:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I am not ready yet to speak about things. 
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Give me some time and come talk to me later."
+          - wait 2
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Npcs like this one may have a quest for you in the future, return after you give them some time."
+          - disengage
+
+Alex:
+  type: assignment
+  interact scripts:
+  - 30 AlexNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+AlexNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I think some of these girls here are just plain rude."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>It wasn't my choice to be a firebender, yet they still hold us accountable for the actions our fathers made."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I just want to be my own person, light my own path."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>My element is a part of me, it fuels me and keeps me strong. I control it like I would control the breath in my body, yet some do not give firebenders a break."
+          - wait 6
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I'd suggest firebending for anyone looking to overpower their own desires. You have to be a strong person to control it."
+          - disengage
+Derion:
+  type: assignment
+  interact scripts:
+  - 30 DerionNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+DerionNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Water benders come from so many areas to be here, we love the warmth. To be honest I don't really like bending ice but it's in my blood."
+          - wait 5
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I have to work with what I have. Anyway, you take care."
+
+Soval:
+  type: assignment
+  interact scripts:
+  - 30 SovalNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+    on exhausted:
+      - run hungry
+
+SovalNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - engage
+          - if <player.has_flag[fedphilip]> {
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Good to see you again <player.name>. I see Philip got out of his mood, you must've done some good. Say, I've got another tip for you....
+            - wait 5
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Why don't you try bringing that little toad Christin a Blue Orhid?  
+            - wait 5
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I know, she doesn't deserve gifts with the way she treats others, however...
+            - wait 4
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>The girls father passed before she was found abandoned in her village, she had been close to mad with the amount of diamonds she tried hording.
+            - wait 5
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>They nurtured her and brought her here to live within this colony."
+            - wait 5
+            - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I knew her father when he was young, he adored blue orchids and I believe that may chill her icy soul to lay some at his memorial."
+            - disengage
+            - zap step:2
+            - queue clear
+            }
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I'm here to work on the buildings, we were brought together by the Airbenders, but we stay for the Salmon!"
+          - wait 5
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>If you meet a grumpy old man who doesn't want to talk at all, try giving the old git some cooked salmon, it might calm him down a bit and he may even help you."
+          - wait 5
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Be safe out there new bender."
+          - disengage
+          - zap step:2
+    2:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Wanting to know about earth bending huh?"
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I love feeling the moving earth beneth my feet, the way the world reacts to us is one of the most delightful feelings...."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Aside from some delicious crispy skin salmon!"
+          - wait 3
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Once we hone our skills, we can feel so much that we can see."
+          - wait 2
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Sounds confusing? It's sort of like closing your eyes and seeing things that are near you with a clap of your hands. You know it's there even if you cannot see it."
+          - wait 5 
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Oh my, I need to be on my way back to work, take care young bender."
+          - walk l@worksite
+          - disengage
+          - zap step:3
+    3:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I've got to work now, you have a good day."
+          - wait 300
+          - disengage
+
+hungry:
+  type: task
+  debug: true
+  script:
+    - engage 
+    - chat 'Time to get a bite to eat. You're welcome to come with me, just don't stop in front of me, I'm starvin!' 
+    - walk <npc.anchor[walktokitchen1]> 
+    - wait 10s 
+    - walk <npc.anchor[walktokitchen2]>
+    - wait 15s 
+    - walk <npc.anchor[walktokitchen3]> 
+    - wait 15s
+    - walk <npc.anchor[walktopond]> 
+    - wait 5s
+    - animate animation:sneak
+    - wait 5s
+    - equip hand:salmon
+    - animate animation:stop_sneaking
+    - chat 'Perfect!'
+    - walk <npc.anchor[walktokitchen4]>
+    - wait 15s
+    - walk <npc.anchor[walktokitchen5]>  
+    - wait 15s
+    - walk <npc.anchor[walktokitchen6]>
+    - disengage 
+
+
+Kalian:
+  type: assignment
+  interact scripts:
+  - 30 KalianNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+KalianNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I've got a bone to pick with my sister, she left me in the dust when we were traveling here to try and flirt with some kid."
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Gross, I know. Anyway, I guess you're curious about us here. I'm one of the Airbenders invited here to help rebuild and teach. I may look young but I'm the top of my area at home, well..."
+          - wait 6
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>What is left of home. There's been alot of desease that raveged this world. I don't really want to talk about it. If you become an airbender, come talk to me again as you progress."
+          - wait 6
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>I may have some things I can teach you if you'll come learn from me."
+          - disengage
+
+Fahrana:
+  type: assignment
+  interact scripts:
+  - 30 FahranaNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+FahranaNPC:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>Hello, how are you?"
+          - wait 4
+          - narrate "<dark_aqua>{<gold>NPC<dark_aqua>} <aqua><npc.name> <white>You are looking a bit lost, can I help you in any way?"

@@ -1,0 +1,323 @@
+bendingworldcmd:
+  type: world
+  debug: true
+  events:
+    on bending command:
+    - define args "<c.args.get[1]>"
+    - execute as_op "bchoose %args%"
+bendingchoosecmd: 
+  type: command 
+  name: bchoose 
+  usage: /bchoose water earth fire air 
+  description: bending choose command
+  debug: true 
+  aliases: 
+  - bendingmenu
+  - bc 
+  - bendingchoose
+  script: 
+  - choose <c.args.get[1]>:
+    - case changeelement:
+      - narrate "<gold><bold>[<dark_aqua>Bending Info<gold><bold>] <gray>You can change your element with the Element selection in <dark_aqua>/bending menu."
+      - queue clear
+    - case unlock:
+      - narrate "<gold><bold>[<dark_aqua>Bending Info<gold><bold>] <gray>Wanting to unlock more abilities? You automatically rankup the more you play. Use command /rankinfo to see your rank progress."
+      - queue clear
+    - case helpguide:
+      - narrate "<gold><bold>[<dark_aqua>Bending Info<gold><bold>] <gray>You can bind your bending abilities to your bar by using the interactive compass. Use <dark_aqua>/bending edit <gray>to get your editor. <&nl><gold><bold>[<dark_aqua><bold> ! <gold><bold>] <gray>Once In the editor you can choose your ability and the bar number that you want it to bind to!<&nl><gold><bold>[<dark_aqua><bold> ! <gold><bold>] <gray>Having trouble figuring out your abilities? Use <dark_aqua>/bending ability <gray>for ability help."
+      - queue clear
+    - case abilities:
+      - execute as_op "hm bendingability"
+      - queue clear
+    - case ability:
+      - execute as_op "hm bendingability"
+      - queue clear
+    - case edit:
+      - execute as_op "gui"
+      - queue clear
+    - case editor:
+      - execute as_op "gui"
+      - queue clear
+    - case help:
+      - execute as_op "hm bendinghelp"
+      - queue clear
+    - case menu:
+      - execute as_op "hm bending"
+      - queue clear
+    - case clear:
+      - narrate "<aqua>Your bending has been cleared."
+      - inject clearabilities
+      - queue clear
+    - case clearallbending:
+      - inject clearbending
+      - queue clear
+    - case water:
+      - choose <player.flag[bendingselected]||false>:
+        - case true:
+          - narrate "You will need to wait another <player.flag[bendingselected].expiration.formatted> to change your element!"
+          - queue clear
+        - case false:
+          - choose <player.has_permission[seasonedbender.node]||false>:
+            - case true:
+              - inject refreshbending
+              - wait 1
+              - inject waterchoice
+              - queue clear
+            - case false:
+              - inject refreshbending
+              - wait 1
+              - inject waterchoice2
+              - queue clear
+    - case fire:
+      - choose <player.flag[bendingselected]||false>:
+        - case true:
+          - narrate "You will need to wait another <player.flag[bendingselected].expiration.formatted> to change your element!"
+          - queue clear
+        - case false:
+          - choose <player.has_permission[seasonedbender.node]||false>:
+            - case true:
+              - inject refreshbending
+              - wait 1
+              - inject firechoice
+              - queue clear
+            - case false:
+              - inject refreshbending
+              - wait 1
+              - inject firechoice2
+              - queue clear
+    - case air:
+      - choose <player.flag[bendingselected]||false>:
+        - case true:
+          - narrate "You will need to wait another <player.flag[bendingselected].expiration.formatted> to change your element!"
+          - queue clear
+        - case false:
+          - choose <player.has_permission[seasonedbender.node]||false>:
+            - case true:
+              - inject refreshbending
+              - wait 1
+              - inject airchoice
+              - queue clear
+            - case false:
+              - inject refreshbending
+              - wait 1
+              - inject airchoice2
+              - queue clear
+    - case earth:
+      - choose <player.flag[bendingselected]||false>:
+        - case false:
+          - choose <player.has_permission[seasonedbender.node]||false>:
+            - case true:
+              - inject refreshbending
+              - wait 1
+              - inject earthchoice
+              - queue clear
+            - case false:
+              - inject refreshbending
+              - wait 1
+              - inject earthchoice2
+              - queue clear
+        - case true:
+          - narrate "You will need to wait another <player.flag[bendingselected].expiration.formatted> to change your element!"
+          - queue clear
+    - case chi:
+      - choose <player.flag[bendingselected]||false>:
+        - case false:
+          - choose <player.has_permission[seasonedbender.node]||false>:
+            - case true:
+              - inject refreshbending
+              - wait 1
+              - inject chichoice
+              - queue clear
+            - case false:
+              - inject refreshbending
+              - wait 1
+              - inject chichoice2
+              - queue clear
+        - case true:
+          - narrate "You will need to wait another <player.flag[bendingselected].expiration.formatted> to change your element!"
+          - queue clear
+        - case clear cancel:
+          - narrate "You did not clear your element."
+          - queue clear
+  - narrate "<gold>Availible Commands: <&nl><dark_aqua>/bending menu<dark_gray>| <gray>Gui For Bending<&nl><dark_aqua>/bending help <dark_gray>| <gray>Gui How To And Ability Guide<&nl><dark_aqua>/bending ability<dark_gray>| <gray>Get your ability editor<&nl><dark_aqua>/bending clear<dark_gray>| <gray>Clear abilities from your bar"
+clearabilities:
+  type: task
+  debug: false
+  script:
+  - execute as_op "bend clear"
+refreshbending:
+  type: task
+  debug: false
+  script:
+  - execute as_server "cmi rankset <player.name> default"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "bend remove <player.name>"
+  - execute as_server "lp user <player.name> parent cleartrack firebending"
+  - execute as_server "lp user <player.name> parent cleartrack earthbending"
+  - execute as_server "lp user <player.name> parent cleartrack waterbending"
+  - execute as_server "lp user <player.name> parent cleartrack airbending"
+  - execute as_server "lp user <player.name> parent cleartrack chibending"
+
+clearbending:
+  type: task
+  debug: false
+  script:
+  - execute as_server "cmi rankset <player.name> default"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "bend remove <player.name>"
+  - execute as_server "lp user <player.name> parent cleartrack firebending"
+  - execute as_server "lp user <player.name> parent cleartrack earthbending"
+  - execute as_server "lp user <player.name> parent cleartrack waterbending"
+  - execute as_server "lp user <player.name> parent cleartrack airbending"
+  - execute as_server "lp user <player.name> parent cleartrack chibending"
+  - execute as_server "lp user <player.name> parent add default"
+waterchoice:
+  type: task
+  debug: true
+  script:
+  - execute as_server "lp user <player.name> parent settrack waterbending waterbender"
+  - narrate "<aqua>You are now a Waterbender<gray>!"
+  - flag <player> bendingselected duration:3d 
+  - execute as_server "bend choose water <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Waterbender1"
+  - execute as_server "lp user <player.name> parent remove default"
+firechoice:
+  type: task
+  debug: true
+  script:
+  - narrate "<red>You are now a Firebender<dark_gray>!"
+  - execute as_server "lp user <player.name> parent settrack firebending firebender"
+  - flag <player> bendingselected duration:3d 
+  - execute as_server "bend choose fire <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Firebender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+airchoice:
+  type: task
+  debug: true
+  script:
+  - narrate "<gray>You are now a Airbender<aqua>!"
+  - execute as_server "lp user <player.name> parent settrack airbending airbender"
+  - flag <player> bendingselected duration:3d 
+  - execute as_server "bend choose air <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Airbender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+earthchoice:
+  type: task
+  debug: true
+  script:
+  - narrate "<green>You are now a Earthbender<dark_green>!"
+  - execute as_server "lp user <player.name> parent settrack earthbending earthbender"
+  - flag <player> bendingselected duration:3d 
+  - execute as_server "bend choose earth <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Earthbender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+chichoice:
+  type: task
+  debug: true
+  script:
+  - narrate "<purple>You are now a Chibender<dark_purple>!"
+  - execute as_server "lp user <player.name> parent settrack chibending chibender"
+  - flag <player> bendingselected duration:3d 
+  - execute as_server "bend choose chi <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Chibender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+waterchoice2:
+  type: task
+  debug: true
+  script:
+  - narrate "<aqua>You are now a Waterbender<gray>!"
+  - wait 1
+  - narrate "<gray>You may change your element every <green>4 <gray>hours until you reach the final rankup."
+  - wait 2
+  - narrate "<gray>You will then have to wait <green>3<gray> days each time you wish to pick another element<aqua>!"
+  - execute as_server "lp user <player.name> parent settrack waterbending waterbender"
+  - flag <player> bendingselected duration:4h 
+  - execute as_server "bend choose water <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Waterbender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+firechoice2:
+  type: task
+  debug: true
+  script:
+  - narrate "<red>You are now a Firebender<dark_gray>!"
+  - wait 1
+  - narrate "<gray>You may change your element every <green>4 <gray>hours until you reach the final rankup."
+  - wait 2
+  - narrate "<gray>You will then have to wait <green>3<gray> days each time you wish to pick another element<aqua>!"
+  - execute as_server "lp user <player.name> parent settrack firebending firebender"
+  - flag <player> bendingselected duration:4h 
+  - execute as_server "bend choose fire <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Firebender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+airchoice2:
+  type: task
+  debug: true
+  script:
+  - narrate "<gray>You are now a Airbender<aqua>!"
+  - wait 1
+  - narrate "<gray>You may change your element every <green>4 <gray>hours until you reach the final rankup."
+  - wait 2
+  - narrate "<gray>You will then have to wait <green>3<gray> days each time you wish to pick another element<aqua>!"
+  - execute as_server "lp user <player.name> group add airbender" 
+  - flag <player> bendingselected duration:4h 
+  - execute as_server "bend choose air <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Airbender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+earthchoice2:
+  type: task
+  debug: true
+  script:
+  - narrate "<green>You are now a Earthbender<dark_green>!"
+  - wait 1
+  - narrate "<gray>You may change your element every <green>4 <gray>hours until you reach the final rankup."
+  - wait 2
+  - narrate "<gray>You will then have to wait <green>3<gray> days each time you wish to pick another element<aqua>!"
+  - execute as_server "lp user <player.name> parent settrack earthbending earthbender"
+  - flag <player> bendingselected duration:4h 
+  - execute as_server "bend choose earth <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Earthbender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+chichoice2:
+  type: task
+  debug: true
+  script:
+  - narrate "<purple>You are now a Chibender<dark_purple>!"
+  - wait 1
+  - narrate "<gray>You may change your element every <green>4 <gray>hours until you reach the final rankup."
+  - wait 2
+  - narrate "<gray>You will then have to wait <green>3<gray> days each time you wish to pick another element<aqua>!"
+  - execute as_server "lp user <player.name> parent settrack chibending chibender"
+  - flag <player> bendingselected duration:4h 
+  - execute as_server "bending choose chi <player.name>"
+  - execute as_server "cmi editplaytime <player.name> set 1 -s"
+  - execute as_server "cmi rankset <player.name> Chibender1"
+  - execute as_server "lp user <player.name> parent remove default"
+
+
+
+clearbendingbmd: 
+  type: command 
+  name: clearbending 
+  usage: /bchoose water earth fire air 
+  description: bending choose command
+  debug: true 
+  script: 
+  - flag <player> bendingselected:!
+  - narrate "flag cleared"

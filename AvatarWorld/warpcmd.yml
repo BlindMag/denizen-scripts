@@ -1,0 +1,8 @@
+mwarp: 
+  type: command 
+  name: mwarp 
+  usage: /mwarp
+  description: Warp menu
+  debug: true 
+  script: 
+  - execute as_player "warp"

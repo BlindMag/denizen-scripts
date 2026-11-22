@@ -1,0 +1,443 @@
+kingmeset:
+  type: world
+  debug: true
+  events:
+    on kingmed command:
+    - define args "<c.args.get[1]>"
+    - if <p@%args%.has_permission[kingme.node]> queue clear
+    - execute as_player "n king %args%"
+    - execute as_server "lp user <player.name> permission unset kingme.node"
+    - execute as_server "lp user %args% permission set kingme.node"
+leadermenu: 
+  type: command 
+  name: leader
+  usage: /leader
+  description: leader menu
+  debug: true 
+  aliases: 
+  - l
+  script: 
+    - execute as_player "hm nationleader"
+nationscommandshandler: 
+  type: command 
+  name: dnations
+  usage: /nations help
+  description: nations commands
+  debug: true 
+  aliases: 
+  - n
+  - nat
+  script: 
+  - choose <c.args.get[1]||null>:
+    - case members:
+      - execute as_player "hm nationmembers"
+    - case leader:
+      - if <player.has_permission[kingme.node]> queue clear
+      - execute as_player "hm nationleader"
+    - case map:
+      - execute as_player "kingdoms map"
+    - case menu:
+      - if <placeholder[kingdoms_haskingdom]> == false && <player.has_permission[nationmember.node]> == true run removenodetask
+      - execute as_player "hm nations"
+    - case top:
+      - execute as_player "kingdoms top"
+    - case tradable:
+      - execute as_player "kingdoms tradable"
+    - case info:
+      - choose <c.args.get[2]||null>:
+        - case 1:
+          - execute as_player "kingdoms info"
+        - case 2:
+          - execute as_player "kingdoms info 2"
+        - case 3:
+          - execute as_player "kingdoms info 3"
+        - case 4:
+          - execute as_player "kingdoms info 4"
+        - case 5:
+          - execute as_player "kingdoms info 5"
+        - case 6:
+          - execute as_player "kingdoms info 6"
+        - case 7:
+          - execute as_player "kingdoms info 7"
+        - case 8:
+          - execute as_player "kingdoms info 8"
+        - case null:
+          - execute as_player "kingdoms info"
+    - case view:
+      - define kingdom <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == null { 
+        - narrate "<&c>You must say a name of a player or nation!" 
+        - queue clear 
+        }
+      - execute as_player "kingdoms show %kingdom%"
+    - case create:
+      - if <player.has_permission[nationmember.node]> {
+        - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You cannot create a nation when you are currently in a nation! Leave nation through /nation menu gui"
+        - queue clear
+        }
+      - if <player.has_permission[kingme.node]> {
+        - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You cannot create a nation when you are currently in a nation! Leave nation through /nation menu gui"
+        - queue clear
+        }
+      - define createkingdom <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == null { 
+        - narrate "<&c>You must choose a name for your kingdom!" 
+        - queue clear 
+        }
+      - execute as_player "kingdoms create %createkingdom%"
+      - wait 2
+      - if <placeholder[kingdoms_king]> == <player.name> {
+        - execute as_server "lp user <player.name> permission set kingme.node"
+        - execute as_server "lp user <player.name> permission set nationmember.node"
+        - execute as_server "lp user <player.name> permission set newplayer.node false"
+        }
+    - case leave:
+      - if <player.has_permission[kingme.node]> {
+        - execute as_player "kingdoms disband"
+        - queue clear
+        }
+      - execute as_player "kingdoms leave"
+      - wait 2
+      - if <placeholder[kingdoms_haskingdom]> == false {
+        - execute as_server "lp user <player.name> permission unset nationmember.node"
+        - execute as_server "lp user <player.name> permission unset modme.node"
+        - execute as_server "lp user <player.name> permission unset newplayer.node"
+        }
+    - case accept:
+      - if <placeholder[kingdoms_haskingdom]> == false && <player.has_permission[pending.invite]> == true {
+        - execute as_player "kingdoms accept"
+        - execute as_server "lp user <player.name> permission unset pending.invite"
+        - execute as_server "lp user <player.name> permission set nationmember.node"
+        - execute as_server "lp user <player.name> permission set newplayer.node false"
+        - queue clear
+        }
+      - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You do not have a pending invitation!"
+    - case deny:
+      - execute as_player "kingdoms deny"
+      - execute as_server "lp user <player.name> permission unset pending.invite"
+    - case decline:
+      - execute as_player "kingdoms decline"
+      - execute as_server "lp user <player.name> permission unset pending.invite"
+##mod
+    - case claim:
+      - if !<player.has_flag[claimtoolcd]> {
+        - narrate "<dark_aqua>[<gold>TIP<dark_aqua>] <white>You can use the command /claimtool to get a golden shovel to claim/unclaim chunks!"
+        - ^flag player claimtoolcd duration:5m 
+        - execute as_player "kingdoms claim "
+        - queue clear
+        }
+      - if !<player.has_flag[claimtoolcd2]> {
+       - narrate "<dark_aqua>[<gold>TIP<dark_aqua>] <white>To see your claim area use /n markers!"
+       - ^flag player claimtoolcd2 duration:5m 
+       - execute as_player "kingdoms claim"
+       - queue clear
+       }
+      - execute as_player "kingdoms claim"
+
+
+    - case invite:
+      - if <player.has_permission[modme.node]> == true || <player.has_permission[nationmember.node]> == true || <player.has_permission[kingme.node]> == true {
+        - define userinfo <c.args.get[2]||null>
+        - if <context.args.get[2]||null> == null { 
+          - narrate "<&c>You must indicate a player" 
+          - queue clear 
+          }
+        - execute as_player "kingdoms invite %userinfo%"
+        - execute as_server "lp user %userinfo% permission settemp pending.invite true 3m" 
+        }
+
+##king
+    - case king:
+      - if <placeholder[kingdoms_king]> == <player.name> {
+        - define kinginfo <c.args.get[2]||null>
+        - execute as_player "kingdoms king %kinginfo%"
+        - wait 1
+        - if <placeholder[kingdoms_king]> == %kinginfo% {
+          - execute as_server "lp user <player.name> permission unset kingme.node"
+          - execute as_server "lp user %kinginfo% permission set kingme.node"
+          - execute as_server "lp user %kinginfo% permission unset modme.node"
+          }
+        }
+        else narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You must be the king of a nation to use this command."
+
+    - case disbandauto:
+      - if !<player.has_permission[kingme.node]> queue clear
+      - define kinginfo <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == confirm { 
+        - execute as_player "kingdoms admin disband"
+        - wait 1
+        - inject removenodetask
+        }
+    - case disband:
+      - if !<player.has_permission[kingme.node]> queue clear
+      - execute as_player "kingdoms disband"
+      - wait 1
+      - inject removenodetask
+
+
+
+    - case mod:
+      - define modadd <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == null { 
+        - narrate "<&c>You must indicate a player" 
+        - queue clear 
+        }
+      - execute as_player "kingdoms mod %modadd%"
+      - execute as_server "lp user %modadd% permission set modme.node"
+    - case general:
+      - define modadd <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == null { 
+        - narrate "<&c>You must indicate a player" 
+        - queue clear 
+        }
+      - execute as_player "kingdoms mod %modadd%"
+      - execute as_server "lp user %modadd% permission set modme.node"
+    - case demote:
+      - define demotemod <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == null { 
+        - narrate "<&c>You must indicate a player" 
+        - queue clear 
+        }
+      - execute as_player "kingdoms demote %demotemod%"
+      - execute as_server "lp user %demotemod% permission unset modme.node"
+    - case kick:
+      - define kickplayer <c.args.get[2]||null>
+      - if <context.args.get[2]||null> == null { 
+        - narrate "<&c>You must indicate a player" 
+        - queue clear 
+        }
+      - execute as_player "kingdoms kick %kickplayer%"
+      - inject removenodetask2
+
+    - case unclaim:
+      - if !<player.has_permission[kingme.node]> queue clear
+      - execute as_player "kingdoms unclaim <c.args.get[2]>"
+    - case nexus:
+      - execute as_player "kingdoms nexus"
+    - case setnexus:
+      - wait 3
+      - execute as_player "kingdoms nexus"
+      
+    - case sethome:
+      - execute as_player "kingdoms sethome"
+    - case home:
+      - execute as_player "kingdoms home"
+
+    - case null:
+      - run commandsetnations
+      - if <placeholder[kingdoms_haskingdom]> == false && <player.has_permission[.node]> == true run removenodetask
+    - case help:
+      - choose <c.args.get[2]||null>:
+        - case null:
+          - if <placeholder[kingdoms_haskingdom]> == false && <player.has_permission[.node]> == true run removenodetask
+          - run commandsetnations
+        - case 1:
+          - run commandsetnations
+        - case 2:
+          - run commandsetnations2
+        - case 3:
+          - run commandsetnations3
+        - case 4:
+          - run commandsetnations4
+        - case 5:
+          - run commandsetnations5
+    - case placeholder:
+      - narrate "<placeholder[kingdoms_rank]>"
+    - case disband:
+        - execute as_player "kingdoms disband"
+    - case ally:
+      - if <context.args.get[2]||null> == add {
+        - execute as_player "kingdoms ally add <context.args.get[3]>"
+        }
+      - if <context.args.get[2]||null> == break {
+        - execute as_player "kingdoms ally break <context.args.get[3]>"
+        }
+      - if <context.args.get[2]||null> == null {
+        - execute as_player "kingdoms ally"
+        }
+    - case enemy:
+      - if <context.args.get[2]||null> == add {
+        - execute as_player "kingdoms enemy add <context.args.get[3]>"
+        }
+      - if <context.args.get[2]||null> == break {
+        - execute as_player "kingdoms enemy break <context.args.get[3]>"
+        }
+      - if <context.args.get[2]||null> == null {
+        - execute as_player "kingdoms enemy"
+        }
+    - case bc:
+      - if <context.args.get[2]||null> == null {
+        - narrate "<gray>[ <gold>Nations <gray>] <white>To broadcast a message to your nation use /n bc (message)"
+        - queue clear
+        }
+      - execute as_player "kingdoms <context.raw_args>"
+    - case broad:
+      - if <context.args.get[2]||null> == null {
+        - narrate "<gray>[ <gold>Nations <gray>] <white>To broadcast a message to your nation use /n bc (message)"
+        - queue clear
+        }
+      - execute as_player "kingdoms <context.raw_args>"
+    - case c:
+      - if <context.args.get[2]||null> == null {
+        - narrate "<&d>/n c:<&nl>
+          <&a>/n chat n <&7>- <&a>Switches to Nation Chat
+          <&d>/n chat a <&7>- <&d>Switches to Allied Chat
+          <&3>/n chat p <&7>- <&3>Switches back to Public Chat"
+        }
+      - if <context.args.get[2]||null> == P || public {
+        - execute as_player "kingdoms chat p"
+        }
+      - if <context.args.get[2]||null> == a || ally || allied || allies {
+        - execute as_player "kingdoms chat a"
+        }
+      - if <context.args.get[2]||null> == n || nation || nations {
+        - execute as_player "kingdoms chat k"
+        }
+    - case chat:
+      - if <context.args.get[2]||null> == null {
+        - narrate "<&d>/n c:<&nl>
+          <&a>/n chat n <&7>- <&a>Switches to Nation Chat
+          <&d>/n chat a <&7>- <&d>Switches to Allied Chat
+          <&3>/n chat p <&7>- <&3>Switches back to Public Chat"
+        }
+      - if <context.args.get[2]||null> == P || public || off {
+        - execute as_player "kingdoms chat p"
+        }
+      - if <context.args.get[2]||null> == a || ally || allied || allies {
+        - narrate "<gray>[ <gold>Nations <gray>] <white>You have joined your allied chat with other nations! <&nl>To disable this chat use /n chat off."
+        - execute as_player "kingdoms chat a"
+        }
+      - if <context.args.get[2]||null> == n || nation || nations {
+        - narrate "<gray>[ <gold>Nations <gray>] <white>You have joined your nation's chat. <&nl>To disable this chat use /n chat off."
+        - execute as_player "kingdoms chat k"
+        }
+    - case defend:
+      - execute as_player "kingdoms defend"
+    - case joinconquest:
+      - execute as_player "kingdoms joinconquest"
+    - case deposit:
+      - execute as_player "kingdoms deposit <context.args.get[2]>"
+    - case donate:
+      - execute as_player "kingdoms donate <context.args.get[2]> <context.args.get[3]>"
+    - case ff:
+      - execute as_player "kingdoms ff"
+    - case surrender:
+      - execute as_player "kingdoms ff"
+    - case forfeit:
+      - execute as_player "kingdoms ff"
+    - case invade:
+      - execute as_player "kingdoms invade"
+    - case markers:
+      - execute as_player "kingdoms markers"
+    - case setlore:
+      - execute as_player "kingdoms <context.raw_args>"
+    - case show:
+      - if <context.args.get[2]> == null narrate "<gray>[ <gold>Nations <gray>] <white>Specify a nation or player to view information about."
+      - execute as_player "kingdoms show <context.args.get[2]>"
+    - case purchase:
+      - define amounttaken "<math:250*<context.args.get[2]>>"
+      - if <player.money> >= <math:250*<context.args.get[2]>> {
+        - execute as_server "cmi money take <player.name> %amounttaken%"
+        - execute as_op "kingdoms admin extralandclaimmaxforplayer <player.name> <context.args.get[2]>"
+        - queue clear
+        }
+      - narrate "<gray>[ <gold>Nations <gray>] <white>You don't have enough. You would need <green>$%amounttaken% <white>to purchase <yellow><context.args.get[2]> claims <white> for your nation."
+        
+commandsetnations:
+  type: task
+  debug: false
+  script:
+    - narrate "<&7>======== <&6>[Nations] <&7>========<&nl>
+      <&9><bold>/N Menu<&7> - <&b><bold>At Any Time To Open The Nation Menu Gui<&nl>
+      <&d>/leader<&7> - <&b>To Open The Leader Menu GUI<&nl>
+      <&d>/n accept <&7>- <&b>Accept an invite from a Nation<&nl>
+      <&d>/n ally<&7> - <&b>Use /n ally to see how to use this cmd<&nl>
+      <&d>/n bc or /n broad <&7> - <&b>Broadcast a message to Nation members<&nl>
+      <&d>/n c or /n chat <&7> - <&b>Set your chat to Nation, allies, public (k, a, p)<&nl>
+      <&d>/n claim & /n unclaim<&7> - <&b>Claims/unclaims a 16x16 patch of land for your nation<&nl><&nl>
+      <&6>Page <&7>1/5<&nl>
+      <&6>Use /n help <&7><page> <&6>to view more pages."
+    - queue clear
+commandsetnations2:
+  type: task
+  debug: false
+  script:
+    - narrate "<&7>======== <&6>[Nations] <&7>========<&nl>
+      <&d>/claimtool<&7> - <&b>Will give you a tool to claim your land with<&nl>
+      <&d>/n create<&7> - <&b>Create a Nation<&nl>
+      <&d>/n decline<&7> - <&b>Declines an invitation from a Nation<&nl>
+      <&d>/n defend<&7> - <&b>Use to teleport to last area where someone invaded the Nation<&nl>
+      <&d>/n demote<&7> - <&b>Set target player to a Normal nation member<&nl>
+      <&d>/n deposit<&7> - <&b>Changes the specified amont of money into resourcepoints for your Nation. Cannot be undone. You will gain 1 resourcepoint for 10<&nl>
+      <&d>/n disband<&7> - <&b>Disbands a Nation<&nl>
+      <&6>Page <&7>2/5<&nl>
+      <&6>Use /n help <&7><page> <&6>to view more pages."
+    - queue clear
+commandsetnations3:
+  type: task
+  debug: false
+  script:
+      - narrate "<&7>======== <&6>[Nations] <&7>========<&nl>
+        <&d>/n donate<&7> - <&b>Donates a specified amount of resource points to another Nation<&nl>
+        <&d>/n enemy<&7> - <&b>/n enemy to see more info<&nl>
+        <&d>/n ff or /n surrender<&7> - <&b>Forfeits the fight<&nl>
+        <&d>/n general<&7> - <&b>Promotes a member in your Nation to Nation general position<&nl>
+        <&d>/n home<&7> - <&b>Teleports to your Nation's homeset<&nl>
+        <&d>/n info<&7> - <&b>Shows how to use nations<&nl>
+        <&d>/n invade<&7> - <&b>Challenges another Nation's champion for a patch of their land. Stand on another Nation's land before using<&nl>
+        <&6>Page <&7>3/5<&nl>
+        <&6>Use /n help <&7><page> <&6>to view previous pages."
+      - queue clear
+commandsetnations4:
+  type: task
+  debug: false
+  script:
+      - narrate "<&7>======== <&6>[Nations] <&7>========<&nl>
+        <&d>/n invite<&7> - <&b>Invites a player to your Nation<&nl>
+        <&d>/n joinconquest<&7> - <&b>Use to teleport to the last area where someone invaded the nation<&nl>
+        <&d>/n kick<&7> - <&b>Kicks a player from your Nation<&nl>
+        <&d>/n king<&7> - <&b>Hands the leadership of your Nation to another member<&nl>
+        <&d>/n leave<&7> - <&b>Leaves your Nation<&nl>
+        <&d>/n map<&7> - <&b>Shows a map of the surrounding territory<&nl>
+        <&d>/n markers<&7> - <&b>Toggles land markers allowing you to see the claim areas. Use with a /claimtool to easily claim another chunk<&nl>
+        <&d>/n mod<&7> - <&b>Promotes a member in your nation to Nation Mod<&nl>
+        <&6>Page <&7>4/5<&nl>
+        <&6>Use /n help <&7><page> <&6>to view previous pages."
+      - queue clear
+
+commandsetnations5:
+  type: task
+  debug: false
+  script:
+      - narrate "<&7>======== <&6>[Nations] <&7>========<&nl>
+        <&d>/n nexus<&7> - <&b>Change a block into your Nation's nexus<&nl>
+        <&d>/n sethome<&7> - <&b>Sets the home of your Nation<&nl>
+        <&d>/n setlore<&7> - <&b>Sets the lore of your Nation<&nl>
+        <&d>/n show<&7> - <&b>Shows information of the specified Nation or Player's Nation<&nl>
+        <&d>/n top<&7> - <&b>Displays the top ten richest Nations<&nl>
+        <&d>/n tradable<&7> - <&b>Shows what items you can or cannot trade for RP<&nl>
+        <&6>Page <&7>5/5<&nl>
+        <&6>Use /n help <&7><page> <&6>to view previous pages."
+      - queue clear
+
+
+
+removenodetask2:
+  type: task
+  debug: true
+  script:
+  - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You were kicked! You can now create or join another nation."
+  - execute as_server "lp user <player.name> permission unset modme.node"
+  - execute as_server "lp user <player.name> permission unset nationmember.node"
+  - execute as_server "lp user <player.name> permission unset kingme.node"
+  - execute as_server "lp user <player.name> permission unset newplayer.node"
+
+removenodetask:
+  type: task
+  debug: true
+  script:
+  - narrate "<dark_aqua>[ <gold>Nations <dark_aqua>] <white>You no longer have a nation! You can now create or join another nation. Use /nations menu to continue."
+  - execute as_server "lp user <player.name> permission unset modme.node"
+  - execute as_server "lp user <player.name> permission unset nationmember.node"
+  - execute as_server "lp user <player.name> permission unset kingme.node"
+  - execute as_server "lp user <player.name> permission unset newplayer.node"

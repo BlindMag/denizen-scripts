@@ -1,0 +1,8 @@
+joinchannel: 
+  type: world 
+  debug: false
+  events: 
+    on player joins: 
+    - wait 3
+    - if <player.has_permission[nationmember.node]> == true && <placeholder[kingdoms_haskingdom]> == false run removenodetask
+

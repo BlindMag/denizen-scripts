@@ -1,0 +1,263 @@
+Nitsune:
+  type: assignment
+  interact scripts:
+  - 30 NitNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+
+NitNPC:
+  type: interact
+  steps:
+    1:
+      proximity trigger:
+        entry:
+          script:
+          - if <player.has_flag[Newplayercd]> {
+            - queue clear
+            }
+          - engage
+          - narrate "<dark_aqua>Welcome to Hollow Tree's Bending Nations. Our Benders are just now ariving in town and have begun to design their new homes. Please be patient as it is a hard time for many who've lost their homes and families from famine and disease."
+          - wait 8
+          - narrate "<dark_aqua>The library was the first to be constructed and can be viewed as of now, please keep down the noise and feel free to read and speak with the various benders on the island.
+          - spawn n@4 l@behindthecounter
+          - disengage
+          - ^flag player Newplayercd duration:30m
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_aqua>Feel free to come inside and see our wonderful library and delightful benders who spend their time here."
+          - wait 8
+          - narrate "<dark_aqua>Feel free to look over what we have here or /spawn to view some informational guides! /Menu will also give you the option to randomly teleport or use a warp. To leave the Menu press the X at the bottom right corner."
+          - spawn n@4 l@behindthecounter
+          - disengage
+Macy:
+  type: assignment
+  interact scripts:
+  - 30 MacyNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+
+MacyNPC:
+  type: interact
+  steps:
+    1:
+      proximity trigger:
+        entry:
+          script:
+            - stand
+            - wait 1
+            - walkto <l@waittomeditate>
+            - if !<player.has_flag[macyproxcd]> {
+              - narrate "<dark_gray>{<gold>NPC<dark_gray>} <gold>Macy<gray>: Good day to you!"
+              - ^flag player macyproxcd duration:5m 
+              }
+        exit:
+          script:
+            - wait 20
+            - stand
+            - walkto <l@waittomeditate>
+      click trigger:
+        script:
+            - narrate "<dark_gray>{<gold>NPC<dark_gray>} <gold>Macy<gray>: Welcome to Korra Bending Nations. This temple is open to all who wish to meditate."
+            - wait 5
+            - narrate "<dark_gray>{<gold>NPC<dark_gray>} <gold>Macy<gray>: I realize it may seem a bit quite around here, we're just getting setup."
+            - Wait 5
+            - narrate "<dark_gray>{<gold>NPC<dark_gray>} <gold>Macy<gray>: Feel free to stay or /rtp out into the wilds, take care young bender."
+            - walkto <l@meditate1>
+            - wait 3
+            - sit
+            - wait 500
+            - stand
+            - walkto <l@waittomeditate>
+testing:
+  type: assignment
+  interact scripts:
+  - 30 testingnpc
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+      - equip '<n@testingnpc>' hand:"i@written_book[book=author|Morphan1|title|My Book|pages|This is my book!]"
+
+
+
+
+
+
+
+UncleIroh:
+  type: assignment
+  interact scripts:
+  - 30 UncleIrohNPC
+  actions: 
+    on assignment: 
+      - ^trigger name:chat state:true 
+      - ^trigger name:click state:true 
+      - ^trigger name:proximity state:true 
+      - ^trigger name:damage state:false 
+      - ^lookclose true range:4 realistic
+
+UncleIrohNPC:
+  type: interact
+  steps:
+    1:
+      proximity trigger:
+        entry:
+          script:
+          - engage
+          - if <player.has_flag[uncleirohproxcd]> {
+            - disengage
+            - queue clear
+            }
+          - ^flag player uncleirohproxcd duration:5m 
+          - if <player.has_flag[Irohpath]> {
+            - disengage
+            - zap step:3
+            - queue clear
+            }
+          - if !<player.has_flag[NextPhaseIroh]> {
+            - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Ahh! A young traveler. Would you like some tea?"
+            - wait 3
+            - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Click to listen to what an NPC would like to tell you."
+            - disengage
+            - queue clear
+            }
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Why welcome back, you must be so curious about this world. Please, come speak with me when you're ready to learn a bit. I will give you another cup of tea when you're ready."
+          - wait 4
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Click to listen to what an NPC would like to tell you."
+          - disengage
+          - queue clear
+        exit:
+          script:
+          - spawn Iroh l@Behindthecounter
+      click trigger:
+        script:
+          - engage
+          - if <player.has_flag[Irohpath]> {
+            - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>I am very late for something I must attend. See you on the other side!"
+            - disengage
+            - despawn n@4
+            }
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>I see you have never been here before, like most wandering spirits yours may need guidance.
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Speak with me with me and I will share some of my vast knowledge about the bending world."
+          - wait 2
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Click to listen to what an NPC would like to tell you."
+          - disengage
+          - zap step:2
+    2:
+      click trigger:
+        script:
+          - engage 20
+          - ^flag player NextPhaseIroh
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Your curiosity is blossoming, please sit, have a tea. I will teach you what I know."
+          - wait 4
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Sit down to hear what the NPC Iroh would like to tell you."
+          - sit l@IrohChair
+          - zap step:sitting
+    3:
+      click trigger:
+        script:
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>I cannot stay here for very long. You should be happy to see me, are you?"
+          - wait 5
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>The great avatar bestowed travel between worlds for limited amounts of time. I do love it here."
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Come again sometime."
+      proximity trigger:
+        exit:
+          script:
+            - playeffect effect:PORTAL at:<npc.Iroh.location[0,5,0]> quantity:35 data:1 offset:0.0
+            - wait 3
+            - playeffect effect:PORTAL at:<npc.Iroh.location[0,5,0]> quantity:45 data:1 offset:0.0
+            - wait 2
+            - playeffect effect:PORTAL at:<npc.Iroh.location[0,5,0]> quantity:80 data:1 offset:0.0
+            - glow
+            - playeffect effect:END_GATEWAY_SPAWN at:<npc.Iroh.location[0,5,0]> quantity:3 data:0 offset:0.0
+            - despawn n@4
+    sitting:
+      click trigger:
+        script:
+          - engage
+          - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Your curiosity is blossoming, please sit, have a tea. I will teach you what I know."
+          - wait 4
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Sit down to hear what the NPC Iroh would like to tell you."
+          - disengage
+      proximity trigger:
+        entry:
+          script:
+          - if <player.has_flag[uncleirohprox2cd]> queue clear
+          - ^flag player uncleirohprox2cd duration:5m 
+          - narrate "<dark_gray>[<dark_aqua>!<dark_gray>]<gray><italic> Sit down to hear what the NPC Iroh would like to tell you."
+    nospam:
+      click trigger:
+        script:
+Sitfortea:
+  type: world
+  debug: false
+  events:
+    on player clicks birch_wood_stairs l@infrontofcounter:
+    - if !<player.has_flag[NextPhaseIroh]> queue clear
+    - if <player.has_flag[NextPhaseIroh]> run locally delay:1t Moreteaandtalk
+ 
+  Moreteaandtalk:
+    - zap step:nospam script:UncleIrohNPC
+    - flag <player> NextPhaseIroh:!
+    - execute as_server "ch set <player.name> standard write"
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>You may be wondering what this place is, how you can make your imprint here and where to start you see..."
+    - wait 4
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>people come from far lands to develop their own mini nations here, we have grown in such a short century."
+    - wait 6
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>We've become divided and diverse. Some of us are also closer together than we have ever been with larger nations."
+    - wait 7
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Whether that is a good thing I can not say."
+    - wait 4
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>I have the pleasure to be here by the grace of the avatar, I get to come and tell stories." 
+    - wait 6
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>You are not after stories from my past however. Instead, you would like to know about bending."
+    - wait 6
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Each bending has a special bond with one's soul, you may decide your own fate here."
+    - wait 6
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>The avatar has blessed the newcomers with the opportunity to change their elements, take advantage of it as it is the power of the avatar allowing you to choose for now."
+    - wait 9
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>I will tell you a bit about each bending and what you will be able to do."
+    - wait 5
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Airbending will bring you the ability to do devastating twisters and tornadoes as well as using air to float like a beautiful butterfly."
+    - wait 8
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Firebending will bring you the ability to unlock true control of fire, create walls, throw it, wield it and allow it to flow through you like the breath in your body."
+    - wait 9
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Waterbending will eventually bring you the ability to create cute water creatures! Haha, I really find that to be quite a wonderful sight to see."
+    - wait 8
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Finally, with the most solid of elements, earth. You will be able to sense the area around you and be able to remove objects from the ground it's self."
+    - wait 7
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Remember power can bring destruction, but power can also bring unity and strength."
+    - wait 6
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Please, think carefully about your choice, once you reach the final rank you will not be able to change your element very quickly."
+    - wait 8
+    - narrate "<dark_gray>{<gold>NPC<dark_gray>} <dark_red>Iroh<gray>: <white>Good bye, young aspiring bender."
+    - execute as_server "ch set <player.name> standard write"
+    - stand
+    - playeffect effect:PORTAL at:<npc.Iroh.location.add[0,5,0]> quantity:35 data:1 offset:0.0
+    - wait 3
+    - playeffect effect:PORTAL at:<npc.Iroh.location.add[0,5,0]> quantity:45 data:1 offset:0.0
+    - wait 2
+    - playeffect effect:PORTAL at:<npc.Iroh.location.add[0,5,0]> quantity:80 data:1 offset:0.0
+    - wait 2
+    - glow
+    - playeffect effect:END_GATEWAY_SPAWN at:<npc.Iroh.location.add[0,5,0]> quantity:3 data:0 offset:0.0
+    - despawn n@4
+    - ^flag player Irohpath
+    - zap step:3 script:UncleIrohNPC
+
+
+

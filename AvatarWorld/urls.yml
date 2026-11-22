@@ -1,0 +1,15 @@
+urlcmds: 
+  type: command 
+  name: url
+  usage: /url type 
+  description: url cmd
+  debug: true 
+  aliases: 
+  - bendingmenu
+  - bc 
+  - bendingchoose
+  script: 
+  - choose <c.args.get[1]>:    
+      - case donate:
+        - narrate "<gold><bold>[<dark_aqua>Donation Link<gold><bold>] <gray>https://www.hollowtree.net/store"
+        - queue clear
